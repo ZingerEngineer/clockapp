@@ -13,9 +13,13 @@ button.addEventListener("click", () => {
   if (button.innerHTML == timeSystem) {
     
     button.innerHTML = "24 hours";
-    if(H <= 24){ K = "PM"}
-    else if (H >=0){K = "AM"}
-    H = Math.abs(d.getHours() - 12)
+    if( H == 24){ K = "AM"}
+    else if (H < 12){K="AM"}
+    else if (H >= 12){K="PM"}
+
+    if(H <= 12){H = d.getHours()}
+    else{H= d.getHours() - 12}
+    
     
   } else if (button.innerHTML != timeSystem) {
     button.innerHTML = "12 hours";
