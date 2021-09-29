@@ -17,7 +17,8 @@ button.addEventListener("click", () => {
     else if (H < 12){K="AM"}
     else if (H >= 12){K="PM"}
 
-    if(H <= 12){H = d.getHours()}
+    if(H < 12){H = d.getHours()}
+    else if(H=0){H = d.getHours()}
     else{H= d.getHours() - 12}
     
     
