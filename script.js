@@ -1,40 +1,55 @@
-let container = document.querySelector(".container");
+let container = document.querySelector(".clock");
 let timeSystem = "12 hours";
-let d = new Date();
-let H = d.getHours();
-let M = d.getMinutes();
-let S = d.getSeconds();
-let K = ""
-let clock = [H, M, S];
+let date = new Date();
+let hours = date.getHours();
+let minutes = date.getMinutes();
+let seconds = date.getSeconds();
+let dayTimeFormat = ""
+let clock = [hours, minutes, seconds];
+let button = document.querySelector("#format-button");
 container.innerHTML = clock.join(":");
-let button = document.querySelector("#btn");
 button.innerHTML = timeSystem;
+
+
+function timeFormatConversion() {
+
+}
+
+
 button.addEventListener("click", () => {
   if (button.innerHTML == timeSystem) {
-    
-    button.innerHTML = "24 hours";
-    if( H == 24){ K = "AM"}
-    else if (H < 12){K="AM"}
-    else if (H >= 12){K="PM"}
 
-    if(H < 12){H = d.getHours()}
-    else if(H=0){H = d.getHours()}
-    else{H= d.getHours() - 12}
-    
-    
+    button.innerHTML = "24 hours";
+    if (hours == 00) {
+      dayTimeFormat = "AM";
+      hours = hours + 12
+    }
+    else if (hours < 12) {
+      dayTimeFormat = "AM";
+      hours = date.getHours()
+    }
+    else if (hours == 12) {
+      dayTimeFormat = "PM";
+      hours = date.getHours()
+    }
+    else if (hours > 12) {
+      dayTimeFormat = "PM";
+      hours = hours - 12
+    }
+
   } else if (button.innerHTML != timeSystem) {
     button.innerHTML = "12 hours";
-    H = d.getHours();
-    K = ""
+    hours = date.getHours();
+    dayTimeFormat = ""
   }
 });
 setInterval(() => {
-  d = new Date();
-  M = d.getMinutes();
-  S = d.getSeconds();
-  clock = [H,M,S]
+  date = new Date();
+  minutes = date.getMinutes();
+  seconds = date.getSeconds();
+  clock = [hours, minutes, seconds]
   clock = clock
     .map((item) => String(item))
     .map((item) => (item.length >= 2 ? item : "0" + item));
-  container.innerHTML = clock.join(":") + K;
+  container.innerHTML = clock.join(":") + dayTimeFormat;
 }, 1000);
