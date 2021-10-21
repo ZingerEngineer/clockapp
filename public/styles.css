@@ -9,7 +9,7 @@ html * {
 }
 
 body {
-  background-image: url("imges/BG.jpg");
+  background-image: url("https://firebasestorage.googleapis.com/v0/b/clock-timfiy.appspot.com/o/BG.jpg?alt=media&token=719b55e7-0a6f-4480-a71b-09f5d52760ac");
   background-size: cover;
   display: flex;
   flex-direction: column;
